@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">MainActivity</string>
+
+    <!-- Rationale to Location Permission -->
+    <string name="rationale_location_title">Enable Location</string>
+    <string name="rationale_location_message">In order for the app being able to show you the current weather at your location you need to enable the location services.</string>
+    <string name="rationale_location_btn_ok">Location Settings</string>
+    <string name="rationale_location_btn_cancel">Cancel</string>
+</resources>
