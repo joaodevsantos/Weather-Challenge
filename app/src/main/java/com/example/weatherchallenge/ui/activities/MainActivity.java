@@ -1,4 +1,4 @@
-package com.example.weatherchallenge.UI.Activities;
+package com.example.weatherchallenge.ui.activities;
 
 import android.Manifest;
 import android.content.DialogInterface;
@@ -12,8 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.example.weatherchallenge.R;
-import com.example.weatherchallenge.UI.Fragments.LocationsFragment;
-import com.example.weatherchallenge.UI.Utils.Functions;
+import com.example.weatherchallenge.ui.fragments.LocationsFragment;
+import com.example.weatherchallenge.utils.Functions;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,13 +40,6 @@ public class MainActivity extends AppCompatActivity {
                     new LocationsFragment());
     };
 
-    private final AlertDialog locationRationale = new AlertDialog.Builder(MainActivity.this)
-                                                                    .setTitle(getString(R.string.rationale_location_title))
-                                                                    .setMessage(getString(R.string.rationale_location_message))
-                                                                    .setPositiveButton(getString(R.string.rationale_location_btn_ok), onRationaleClick)
-                                                                    .setNegativeButton(getString(R.string.rationale_location_btn_cancel), onRationaleClick)
-                                                                    .create();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +52,12 @@ public class MainActivity extends AppCompatActivity {
             // Check if it is needed to present a permission rationale
             if(shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_COARSE_LOCATION))
                 // Show the rational as an UI educational
-                locationRationale.show();
+                new AlertDialog.Builder(MainActivity.this)
+                        .setTitle(getString(R.string.rationale_location_title))
+                        .setMessage(getString(R.string.rationale_location_message))
+                        .setPositiveButton(getString(R.string.rationale_location_btn_ok), onRationaleClick)
+                        .setNegativeButton(getString(R.string.rationale_location_btn_cancel), onRationaleClick)
+                        .show();
             else
                 // Request the location permission
                 requestLocationPermissionLauncher.launch(Manifest.permission.ACCESS_COARSE_LOCATION);

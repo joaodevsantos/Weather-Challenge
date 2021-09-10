@@ -1,4 +1,4 @@
-package com.example.weatherchallenge.UI.Utils;
+package com.example.weatherchallenge.utils;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
