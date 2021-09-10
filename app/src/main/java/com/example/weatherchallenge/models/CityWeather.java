@@ -5,6 +5,8 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class CityWeather {
+    @SerializedName("id")
+    private int id;
     @SerializedName("name")
     private String city;
     @SerializedName("dt")
@@ -19,6 +21,14 @@ public class CityWeather {
     private WindInfo wind;
     @SerializedName("sys") // Does not makes sense the sun information within this JSON object
     private SunInfo sun;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getCity() {
         return city;

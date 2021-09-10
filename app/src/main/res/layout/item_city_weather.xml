@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <TextView
-        android:id="@+id/fragment_location_city"
+        android:id="@+id/item_city_weather_city"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TITLE"
@@ -13,7 +14,7 @@
         style="@style/TextAppearance.MaterialComponents.Body2"/>
 
     <TextView
-        android:id="@+id/fragment_location_datetime"
+        android:id="@+id/item_city_weather_datetime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="DATE TIME"
@@ -21,7 +22,7 @@
         style="@style/TextAppearance.MaterialComponents.Body2"/>
 
     <TextView
-        android:id="@+id/fragment_location_temperature"
+        android:id="@+id/item_city_weather_temperature"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TEMPERATURE"
@@ -29,11 +30,11 @@
         style="@style/TextAppearance.MaterialComponents.Headline5"/>
 
     <TextView
-        android:id="@+id/fragment_location_description"
+        android:id="@+id/item_city_weather_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="WEATHER DESCRIPTION"
         android:textColor="@color/white"
         style="@style/TextAppearance.MaterialComponents.Body2"/>
 
-</RelativeLayout>
+</LinearLayout>
