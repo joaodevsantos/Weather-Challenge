@@ -10,12 +10,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weatherchallenge.R;
+import com.example.weatherchallenge.databinding.ItemCityWeatherBinding;
 import com.example.weatherchallenge.models.CityWeather;
 
 import java.util.Date;
 import java.util.List;
-
-import butterknife.BindView;
 
 public class LocationsAdapter extends RecyclerView.Adapter<LocationsAdapter.ViewHolder> {
 
@@ -34,10 +33,10 @@ public class LocationsAdapter extends RecyclerView.Adapter<LocationsAdapter.View
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context)
-                                    .inflate(R.layout.item_city_weather, null);
-
-        return new ViewHolder(view);
+        ItemCityWeatherBinding binding = ItemCityWeatherBinding.inflate(LayoutInflater.from(parent.getContext()),
+                                                                            parent,
+                                                                            false);
+        return new ViewHolder(binding);
     }
 
     @Override
@@ -47,14 +46,7 @@ public class LocationsAdapter extends RecyclerView.Adapter<LocationsAdapter.View
         // Set listener to "OnItemClick"
         // Sends his identifier over Bundle to the detailed fragment
         holder.itemView.setOnClickListener(v -> listener.onItemClick(cityWeather.getId()));
-
-        holder.city.setText(cityWeather.getCity());
-
-        Date time = new java.util.Date((long)cityWeather.getLast_update_timestamp()*1000);
-        holder.timestamp.setText(time.toString());
-
-        holder.temperature.setText("" + cityWeather.getWeather().getTemperature());
-        holder.description.setText(cityWeather.getWeatherDescription().get(0).getDescription());
+        holder.bind(cityWeather);
     }
 
     @Override
@@ -62,19 +54,23 @@ public class LocationsAdapter extends RecyclerView.Adapter<LocationsAdapter.View
         return citiesWeather.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.item_city_weather_city)
-        TextView city;
-        @BindView(R.id.item_city_weather_datetime)
-        TextView timestamp;
-        @BindView(R.id.item_city_weather_temperature)
-        TextView temperature;
-        @BindView(R.id.item_city_weather_description)
-        TextView description;
+        private ItemCityWeatherBinding itemBinding;
 
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
+        public ViewHolder(@NonNull ItemCityWeatherBinding itemBinding) {
+            super(itemBinding.getRoot());
+            this.itemBinding = itemBinding;
+        }
+
+        public void bind(CityWeather cityWeather) {
+            itemBinding.city.setText(cityWeather.getCity());
+
+            Date time = new java.util.Date((long)cityWeather.getLast_update_timestamp()*1000);
+            itemBinding.datetime.setText(time.toString());
+
+            itemBinding.temperature.setText("" + cityWeather.getWeather().getTemperature());
+            itemBinding.description.setText(cityWeather.getWeatherDescription().get(0).getDescription());
         }
     }
 

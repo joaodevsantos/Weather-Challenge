@@ -5,36 +5,36 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/item_city_weather_city"
+        android:id="@+id/city"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TITLE"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textStyle="bold"
         style="@style/TextAppearance.MaterialComponents.Body2"/>
 
     <TextView
-        android:id="@+id/item_city_weather_datetime"
+        android:id="@+id/datetime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="DATE TIME"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         style="@style/TextAppearance.MaterialComponents.Body2"/>
 
     <TextView
-        android:id="@+id/item_city_weather_temperature"
+        android:id="@+id/temperature"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TEMPERATURE"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         style="@style/TextAppearance.MaterialComponents.Headline5"/>
 
     <TextView
-        android:id="@+id/item_city_weather_description"
+        android:id="@+id/description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="WEATHER DESCRIPTION"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         style="@style/TextAppearance.MaterialComponents.Body2"/>
 
 </LinearLayout>

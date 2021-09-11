@@ -6,7 +6,6 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +15,9 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weatherchallenge.R;
+import com.example.weatherchallenge.databinding.FragmentLocationsBinding;
 import com.example.weatherchallenge.models.CityWeather;
 import com.example.weatherchallenge.networking.webservices.weather.APIInterface;
 import com.example.weatherchallenge.networking.webservices.weather.ServiceGenerator;
@@ -33,23 +32,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LocationsFragment extends Fragment {
 
-    private final String TAG = LocationsFragment.class.getSimpleName();
-
-    @BindView(R.id.fragment_locations_recyclerview)
-    RecyclerView recyclerView;
     private LocationsAdapter locationsAdapter;
     private List<CityWeather> citiesWeather = new ArrayList<>();
 
-    private Unbinder unbinder;
+    private FragmentLocationsBinding binding;
 
     private final OnItemClickListener onItemClickListener = cityId -> {
         Bundle bundle = new Bundle();
@@ -58,21 +50,22 @@ public class LocationsFragment extends Fragment {
         LocationFragment locationFragment = new LocationFragment();
         locationFragment.setArguments(bundle);
 
-        Functions.changeFragment(getActivity(), R.id.activity_main_frame, locationFragment);
+        Functions.changeFragmentToBackstack(getActivity(), R.id.activity_main_frame, locationFragment);
     };
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_locations, container, false);
-        unbinder = ButterKnife.bind(view);
+        // Binding with View Binding of Android Jetpack
+        binding = FragmentLocationsBinding.inflate(inflater, container, false);
+        View view = binding.getRoot();
 
         // Setup the Recycler View
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(linearLayoutManager);
+        binding.recyclerview.setLayoutManager(linearLayoutManager);
 
-        locationsAdapter = new LocationsAdapter(getContext(), citiesWeather, onItemClickListener);
-        recyclerView.setAdapter(locationsAdapter);
+        locationsAdapter = new LocationsAdapter(getActivity(), citiesWeather, onItemClickListener);
+        binding.recyclerview.setAdapter(locationsAdapter);
 
         // TEMPORARY
         List<String> cities = Arrays.asList("Lisboa", "Madrid", "Paris", "Berlim", "Copenhaga",
@@ -84,9 +77,9 @@ public class LocationsFragment extends Fragment {
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-        unbinder.unbind();
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 
     private void getWeatherForLocations(List<String> cities){
@@ -105,13 +98,14 @@ public class LocationsFragment extends Fragment {
                 if(response.isSuccessful()){
                     citiesWeather.add(response.body());
                     locationsAdapter.notifyDataSetChanged();
-                } else
-                    Log.d(TAG, response.message());
+                } else {
+                    // Do something
+                }
             }
 
             @Override
             public void onFailure(Call<CityWeather> call, Throwable t) {
-                Log.d(TAG, t.getMessage());
+                // Do something
             }
         });
     }
@@ -139,13 +133,14 @@ public class LocationsFragment extends Fragment {
                     CityWeather cityWeather = response.body();
                     citiesWeather.add(cityWeather);
                     locationsAdapter.notifyDataSetChanged();
-                } else
-                    Log.d(TAG, response.message());
+                } else {
+                    // Do something
+                }
             }
 
             @Override
             public void onFailure(Call<CityWeather> call, Throwable t) {
-                Log.d(TAG, t.getMessage());
+                // Do something
             }
         });
     }
