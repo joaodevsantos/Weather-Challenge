@@ -10,7 +10,9 @@ public class CityWeather {
     @SerializedName("name")
     private String city;
     @SerializedName("dt")
-    private int last_update_timestamp;
+    private long last_update_timestamp;
+    @SerializedName("timezone")
+    private int timezone;
     @SerializedName("coord")
     private Coordinates coordinates;
     @SerializedName("weather")
@@ -38,12 +40,20 @@ public class CityWeather {
         this.city = city;
     }
 
-    public int getLast_update_timestamp() {
+    public long getLast_update_timestamp() {
         return last_update_timestamp;
     }
 
-    public void setLast_update_timestamp(int last_update_timestamp) {
+    public void setLast_update_timestamp(long last_update_timestamp) {
         this.last_update_timestamp = last_update_timestamp;
+    }
+
+    public int getTimezone() {
+        return timezone;
+    }
+
+    public void setTimezone(int timezone) {
+        this.timezone = timezone;
     }
 
     public Coordinates getCoordinates() {

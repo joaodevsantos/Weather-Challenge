@@ -68,8 +68,9 @@ public class LocationsFragment extends Fragment {
         binding.recyclerview.setAdapter(locationsAdapter);
 
         // TEMPORARY
-        List<String> cities = Arrays.asList("Lisboa", "Madrid", "Paris", "Berlim", "Copenhaga",
-                "Roma", "Londres", "Dublin", "Praga", "Viena");
+        List<String> cities = Arrays.asList("Lisbon,pt", "Madrid,es", "Paris,fr", "Berlin,de",
+                "Copenhagen,dk", "Roma,it", "London,uk", "Dublin,ie", "Prague,cz", "Vienna,at");
+
         getWeatherForLocations(cities);
         //getCurrentLocation();
 

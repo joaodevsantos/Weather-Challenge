@@ -39,6 +39,12 @@ public class LocationFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
+
     private void getCurrentWeatherByCityId(int cityId){
         APIInterface apiInterface = ServiceGenerator.createService(APIInterface.class);
         Call<CityWeather> getCurrentWeatherByCityId = apiInterface.getCurrentWeatherBy(cityId, API_KEY);
