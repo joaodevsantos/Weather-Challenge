@@ -21,8 +21,16 @@ public class CityWeather {
     private WeatherInfo weather;
     @SerializedName("wind")
     private WindInfo wind;
+    @SerializedName("clouds")
+    private Clouds clouds;
+    @SerializedName("rain")
+    private Rain rain;
+    @SerializedName("snow")
+    private Snow snow;
     @SerializedName("sys") // Does not makes sense the sun information within this JSON object
     private SunInfo sun;
+
+    private boolean isCurrent = false;
 
     public int getId() {
         return id;
@@ -88,11 +96,43 @@ public class CityWeather {
         this.wind = wind;
     }
 
+    public Clouds getClouds() {
+        return clouds;
+    }
+
+    public void setClouds(Clouds clouds) {
+        this.clouds = clouds;
+    }
+
+    public Rain getRain() {
+        return rain;
+    }
+
+    public void setRain(Rain rain) {
+        this.rain = rain;
+    }
+
+    public Snow getSnow() {
+        return snow;
+    }
+
+    public void setSnow(Snow snow) {
+        this.snow = snow;
+    }
+
     public SunInfo getSun() {
         return sun;
     }
 
     public void setSun(SunInfo sun) {
         this.sun = sun;
+    }
+
+    public boolean isCurrent() {
+        return isCurrent;
+    }
+
+    public void setCurrent(boolean current) {
+        isCurrent = current;
     }
 }

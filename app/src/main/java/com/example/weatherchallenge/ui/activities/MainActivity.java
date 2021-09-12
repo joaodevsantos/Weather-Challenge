@@ -15,6 +15,9 @@ import com.example.weatherchallenge.R;
 import com.example.weatherchallenge.ui.fragments.LocationsFragment;
 import com.example.weatherchallenge.utils.Functions;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class MainActivity extends AppCompatActivity {
 
     private final ActivityResultLauncher<String> requestLocationPermissionLauncher =
@@ -25,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
                 // At this Main activity we only need to grant that the request is made
                 Functions.changeFragment(MainActivity.this,
                         R.id.activity_main_frame,
-                        new LocationsFragment());
+                        getLocationsFragmentWithCities());
             });
 
     private final DialogInterface.OnClickListener onRationaleClick = (dialog, which) -> {
@@ -37,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
             // Move to the locations fragment without location permission
             Functions.changeFragment(MainActivity.this,
                     R.id.activity_main_frame,
-                    new LocationsFragment());
+                    getLocationsFragmentWithCities());
     };
 
     @Override
@@ -66,6 +69,17 @@ public class MainActivity extends AppCompatActivity {
             // Move to locations fragment
             Functions.changeFragment(MainActivity.this,
                     R.id.activity_main_frame,
-                    new LocationsFragment());
+                    getLocationsFragmentWithCities());
+    }
+
+    private LocationsFragment getLocationsFragmentWithCities(){
+        Bundle bundle = new Bundle();
+        bundle.putStringArrayList("citiesList", new ArrayList<>(Arrays.asList("Lisbon,pt", "Madrid,es", "Paris,fr", "Berlin,de",
+                "Copenhagen,dk", "Roma,it", "London,uk", "Dublin,ie", "Prague,cz", "Vienna,at")));
+
+        LocationsFragment frag = new LocationsFragment();
+        frag.setArguments(bundle);
+
+        return frag;
     }
 }

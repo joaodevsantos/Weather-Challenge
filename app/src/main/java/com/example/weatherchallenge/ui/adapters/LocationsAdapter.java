@@ -55,7 +55,7 @@ public class LocationsAdapter extends RecyclerView.Adapter<LocationsAdapter.View
         // Set listener to "OnItemClick"
         // Sends his identifier over Bundle to the detailed fragment
         holder.itemView.setOnClickListener(v -> listener.onItemClick(cityWeather.getId()));
-        holder.bind(cityWeather, position);
+        holder.bind(cityWeather);
     }
 
     @Override
@@ -69,20 +69,21 @@ public class LocationsAdapter extends RecyclerView.Adapter<LocationsAdapter.View
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        private final ItemCityWeatherBinding itemBinding;
+        private ItemCityWeatherBinding itemBinding;
 
         public ViewHolder(@NonNull ItemCityWeatherBinding itemBinding) {
             super(itemBinding.getRoot());
             this.itemBinding = itemBinding;
         }
 
-        public void bind(CityWeather cityWeather, int position) {
+        public void bind(CityWeather cityWeather) {
             // The first item is always the current location
             // Animate the icon to distinguish from the others
-            if (position == 0) {
+            if (cityWeather.isCurrent()) {
                 itemBinding.poi.setImageDrawable(context.getDrawable(R.drawable.ic_poi_gradient_blue));
                 itemBinding.poi.startAnimation(AnimationUtils.loadAnimation(context, R.anim.up_down));
-            }
+            } else
+                itemBinding.poi.setImageDrawable(context.getDrawable(R.drawable.ic_poi));
 
             itemBinding.city.setText(cityWeather.getCity());
             itemBinding.temperature.setText(String.format("%.2fºC", cityWeather.getWeather().getTemperature()));

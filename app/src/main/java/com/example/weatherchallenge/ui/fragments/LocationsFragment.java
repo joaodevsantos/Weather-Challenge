@@ -24,18 +24,18 @@ import com.example.weatherchallenge.networking.webservices.weather.ServiceGenera
 import com.example.weatherchallenge.ui.adapters.LocationsAdapter;
 import com.example.weatherchallenge.ui.adapters.LocationsAdapter.OnItemClickListener;
 import com.example.weatherchallenge.utils.Functions;
-//import com.google.android.gms.location.LocationRequest;
-//import com.google.android.gms.location.FusedLocationProviderClient;
 import com.huawei.hms.location.FusedLocationProviderClient;
 import com.huawei.hms.location.LocationServices;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+//import com.google.android.gms.location.LocationRequest;
+//import com.google.android.gms.location.FusedLocationProviderClient;
 
 public class LocationsFragment extends Fragment {
 
@@ -44,9 +44,7 @@ public class LocationsFragment extends Fragment {
 
     private FragmentLocationsBinding binding;
 
-    // TEMPORARY
-    private final List<String> cities = Arrays.asList("Lisbon,pt", "Madrid,es", "Paris,fr", "Berlin,de",
-            "Copenhagen,dk", "Roma,it", "London,uk", "Dublin,ie", "Prague,cz", "Vienna,at");
+    private List<String> cities = new ArrayList<>();
 
     private final OnItemClickListener onItemClickListener = cityId -> {
         Bundle bundle = new Bundle();
@@ -58,6 +56,15 @@ public class LocationsFragment extends Fragment {
         Functions.changeFragmentToBackstack(getActivity(), R.id.activity_main_frame, locationFragment);
     };
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        Bundle bundle = getArguments();
+        if(bundle != null && bundle.containsKey("citiesList"))
+            cities.addAll(bundle.getStringArrayList("citiesList"));
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -68,12 +75,13 @@ public class LocationsFragment extends Fragment {
         // Setup the Recycler View
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         binding.recyclerview.setLayoutManager(linearLayoutManager);
+        binding.recyclerview.setHasFixedSize(true);
 
         locationsAdapter = new LocationsAdapter(getActivity(), citiesWeather, onItemClickListener);
         binding.recyclerview.setAdapter(locationsAdapter);
 
         // TEMPORARY
-        if(citiesWeather.size() == 0)
+        if(citiesWeather.isEmpty())
             getCurrentLocation();
 
         return view;
@@ -101,8 +109,6 @@ public class LocationsFragment extends Fragment {
                 if(response.isSuccessful()){
                     citiesWeather.add(response.body());
                     locationsAdapter.notifyDataSetChanged();
-                } else {
-                    // Do something
                 }
             }
 
@@ -138,8 +144,9 @@ public class LocationsFragment extends Fragment {
             @Override
             public void onResponse(Call<CityWeather> call, Response<CityWeather> response) {
                 if(response.isSuccessful()){
-                    citiesWeather.add(response.body());
-                    locationsAdapter.notifyDataSetChanged();
+                    CityWeather cityWeather = response.body();
+                    cityWeather.setCurrent(true);
+                    citiesWeather.add(cityWeather);
                 }
 
                 getWeatherForLocations(cities);
