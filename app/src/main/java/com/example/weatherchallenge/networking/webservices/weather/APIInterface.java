@@ -9,14 +9,17 @@ import retrofit2.http.Query;
 public interface APIInterface {
     @GET("weather")
     public Call<CityWeather> getCurrentWeatherAt(@Query("q") String city,
-                                                   @Query("appid") String APIkey);
+                                                    @Query("appid") String APIkey,
+                                                    @Query("units") String units);
 
     @GET("weather")
     public Call<CityWeather> getCurrentWeatherBy(@Query("id") int cityId,
-                                                 @Query("appid") String APIkey);
+                                                 @Query("appid") String APIkey,
+                                                 @Query("units") String units);
 
     @GET("weather")
     public Call<CityWeather> getCurrentWeatherBy(@Query("lat") double latitude,
                                                    @Query("lon") double longitude,
-                                                   @Query("appid") String APIkey);
+                                                   @Query("appid") String APIkey,
+                                                 @Query("units") String units);
 }

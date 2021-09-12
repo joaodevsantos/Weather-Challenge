@@ -47,7 +47,7 @@ public class LocationFragment extends Fragment {
 
     private void getCurrentWeatherByCityId(int cityId){
         APIInterface apiInterface = ServiceGenerator.createService(APIInterface.class);
-        Call<CityWeather> getCurrentWeatherByCityId = apiInterface.getCurrentWeatherBy(cityId, API_KEY);
+        Call<CityWeather> getCurrentWeatherByCityId = apiInterface.getCurrentWeatherBy(cityId, API_KEY, "metric");
 
         // Consume the web API to get the weather at user's current location
         getCurrentWeatherByCityId.enqueue(new Callback<CityWeather>() {

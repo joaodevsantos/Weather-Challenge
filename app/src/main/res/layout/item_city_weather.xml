@@ -2,7 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="150dp"
-    android:orientation="vertical"
     android:layout_marginLeft="30dp"
     android:layout_marginRight="30dp"
     android:layout_marginBottom="20dp">
@@ -19,36 +18,35 @@
         style="@style/TextAppearance.MaterialComponents.Headline5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:text="38º C"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="20dp"
         android:textColor="@color/white"
-        android:textSize="36dp"
-        android:textStyle="bold"/>
+        android:textSize="36sp"
+        android:textStyle="bold" />
 
     <LinearLayout
-        android:id="@+id/linear_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/temperature"
-        android:gravity="center"
-        android:layout_marginTop="8dp">
+        android:layout_marginTop="8dp"
+        android:gravity="center">
 
         <ImageView
+            android:id="@+id/poi"
             android:layout_width="16dp"
             android:layout_height="16dp"
-            android:src="@drawable/ic_poi"
-            android:layout_marginEnd="4dp"/>
+            android:layout_marginEnd="4dp"
+            android:elevation="1dp"
+            android:src="@drawable/ic_poi" />
 
         <TextView
             android:id="@+id/city"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Berlim"
             android:textColor="@color/white"
             android:textSize="16sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
     </LinearLayout>
 
@@ -56,11 +54,10 @@
         android:id="@+id/datetime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:text="DATE TIME"
-        android:textColor="@color/white"
-        android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:textSize="11sp"/>
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="4dp"
+        android:textColor="@color/white"
+        android:textSize="11sp" />
 
 </RelativeLayout>

@@ -24,9 +24,10 @@ import com.example.weatherchallenge.networking.webservices.weather.ServiceGenera
 import com.example.weatherchallenge.ui.adapters.LocationsAdapter;
 import com.example.weatherchallenge.ui.adapters.LocationsAdapter.OnItemClickListener;
 import com.example.weatherchallenge.utils.Functions;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationServices;
+//import com.google.android.gms.location.LocationRequest;
+//import com.google.android.gms.location.FusedLocationProviderClient;
+import com.huawei.hms.location.FusedLocationProviderClient;
+import com.huawei.hms.location.LocationServices;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,6 +43,10 @@ public class LocationsFragment extends Fragment {
     private List<CityWeather> citiesWeather = new ArrayList<>();
 
     private FragmentLocationsBinding binding;
+
+    // TEMPORARY
+    private final List<String> cities = Arrays.asList("Lisbon,pt", "Madrid,es", "Paris,fr", "Berlin,de",
+            "Copenhagen,dk", "Roma,it", "London,uk", "Dublin,ie", "Prague,cz", "Vienna,at");
 
     private final OnItemClickListener onItemClickListener = cityId -> {
         Bundle bundle = new Bundle();
@@ -68,11 +73,8 @@ public class LocationsFragment extends Fragment {
         binding.recyclerview.setAdapter(locationsAdapter);
 
         // TEMPORARY
-        List<String> cities = Arrays.asList("Lisbon,pt", "Madrid,es", "Paris,fr", "Berlin,de",
-                "Copenhagen,dk", "Roma,it", "London,uk", "Dublin,ie", "Prague,cz", "Vienna,at");
-
-        getWeatherForLocations(cities);
-        //getCurrentLocation();
+        if(citiesWeather.size() == 0)
+            getCurrentLocation();
 
         return view;
     }
@@ -90,7 +92,7 @@ public class LocationsFragment extends Fragment {
 
     private void getWeatherForLocation(String city){
         APIInterface apiInterface = ServiceGenerator.createService(APIInterface.class);
-        Call<CityWeather> getCurrentWeatherAt = apiInterface.getCurrentWeatherAt(city, API_KEY);
+        Call<CityWeather> getCurrentWeatherAt = apiInterface.getCurrentWeatherAt(city, API_KEY, "metric");
 
         // Consume the web API to get the weather at a specific location
         getCurrentWeatherAt.enqueue(new Callback<CityWeather>() {
@@ -115,33 +117,37 @@ public class LocationsFragment extends Fragment {
         if(ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED){
             FusedLocationProviderClient fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getContext());
-            fusedLocationProviderClient.getCurrentLocation(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY, null)
-                    .addOnSuccessListener(this::getCurrentWeatherAtMyLocation);
-        }
+
+            fusedLocationProviderClient.getLastLocation()
+                                        .addOnSuccessListener(this::getCurrentWeatherAtMyLocation)
+                                        .addOnFailureListener(e -> getWeatherForLocations(cities));
+
+            //fusedLocationProviderClient.getCurrentLocation(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY, null)
+        } else
+            getWeatherForLocations(cities);
     }
 
     private void getCurrentWeatherAtMyLocation(Location location){
         APIInterface apiInterface = ServiceGenerator.createService(APIInterface.class);
         Call<CityWeather> getCurrentWeatherAtMyLocation = apiInterface.getCurrentWeatherBy(location.getLatitude(),
                                                                                             location.getLongitude(),
-                                                                                            API_KEY);
+                                                                                            API_KEY, "metric");
 
         // Consume the web API to get the weather at user's current location
         getCurrentWeatherAtMyLocation.enqueue(new Callback<CityWeather>() {
             @Override
             public void onResponse(Call<CityWeather> call, Response<CityWeather> response) {
                 if(response.isSuccessful()){
-                    CityWeather cityWeather = response.body();
-                    citiesWeather.add(cityWeather);
+                    citiesWeather.add(response.body());
                     locationsAdapter.notifyDataSetChanged();
-                } else {
-                    // Do something
                 }
+
+                getWeatherForLocations(cities);
             }
 
             @Override
             public void onFailure(Call<CityWeather> call, Throwable t) {
-                // Do something
+                getWeatherForLocations(cities);
             }
         });
     }
