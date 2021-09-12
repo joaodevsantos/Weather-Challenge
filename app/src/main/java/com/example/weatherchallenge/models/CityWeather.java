@@ -1,10 +1,24 @@
 package com.example.weatherchallenge.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class CityWeather {
+public class CityWeather implements Parcelable {
+
+    public static final Creator<CityWeather> CREATOR = new Creator<CityWeather>() {
+        public CityWeather createFromParcel(Parcel source) {
+            return new CityWeather(source);
+        }
+
+        public CityWeather[] newArray(int size) {
+            return new CityWeather[size];
+        }
+    };
+
     @SerializedName("id")
     private int id;
     @SerializedName("name")
@@ -134,5 +148,42 @@ public class CityWeather {
 
     public void setCurrent(boolean current) {
         isCurrent = current;
+    }
+
+    private CityWeather(Parcel in){
+        this.id = in.readInt();
+        this.city = in.readString();
+        this.last_update_timestamp =  in.readLong();
+        this.timezone =  in.readInt();
+        this.coordinates = in.readParcelable(Coordinates.class.getClassLoader());
+        in.readTypedList(this.weatherDescription, WeatherDescription.CREATOR);
+        this.weather = in.readParcelable(WeatherInfo.class.getClassLoader());
+        this.wind = in.readParcelable(WindInfo.class.getClassLoader());
+        this.clouds = in.readParcelable(Clouds.class.getClassLoader());
+        this.rain = in.readParcelable(Rain.class.getClassLoader());
+        this.snow = in.readParcelable(Snow.class.getClassLoader());
+        this.sun = in.readParcelable(SunInfo.class.getClassLoader());
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.id);
+        dest.writeString(this.city);
+        dest.writeLong(this.last_update_timestamp);
+        dest.writeInt(this.timezone);
+        dest.writeParcelable(this.coordinates, flags);
+        dest.writeTypedList(this.weatherDescription);
+        dest.writeParcelable(this.weather, flags);
+        dest.writeParcelable(this.wind, flags);
+        dest.writeParcelable(this.clouds, flags);
+        dest.writeParcelable(this.rain, flags);
+        dest.writeParcelable(this.snow, flags);
+        dest.writeParcelable(this.sun, flags);
+
     }
 }

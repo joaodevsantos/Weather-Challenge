@@ -46,9 +46,9 @@ public class LocationsFragment extends Fragment {
 
     private List<String> cities = new ArrayList<>();
 
-    private final OnItemClickListener onItemClickListener = cityId -> {
+    private final OnItemClickListener onItemClickListener = city -> {
         Bundle bundle = new Bundle();
-        bundle.putInt("cityId", cityId);
+        bundle.putParcelable("city", city);
 
         LocationFragment locationFragment = new LocationFragment();
         locationFragment.setArguments(bundle);

@@ -54,7 +54,7 @@ public class LocationsAdapter extends RecyclerView.Adapter<LocationsAdapter.View
 
         // Set listener to "OnItemClick"
         // Sends his identifier over Bundle to the detailed fragment
-        holder.itemView.setOnClickListener(v -> listener.onItemClick(cityWeather.getId()));
+        holder.itemView.setOnClickListener(v -> listener.onItemClick(cityWeather));
         holder.bind(cityWeather);
     }
 
@@ -64,7 +64,7 @@ public class LocationsAdapter extends RecyclerView.Adapter<LocationsAdapter.View
     }
 
     public interface OnItemClickListener {
-        void onItemClick(int cityId);
+        void onItemClick(CityWeather city);
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -86,7 +86,7 @@ public class LocationsAdapter extends RecyclerView.Adapter<LocationsAdapter.View
                 itemBinding.poi.setImageDrawable(context.getDrawable(R.drawable.ic_poi));
 
             itemBinding.city.setText(cityWeather.getCity());
-            itemBinding.temperature.setText(String.format("%.2fºC", cityWeather.getWeather().getTemperature()));
+            itemBinding.temperature.setText(String.format("%.1fºC", cityWeather.getWeather().getTemperature()));
 
             // Sets the date time according to a specific pattern
             SimpleDateFormat dateFormat = new SimpleDateFormat(Constants.DATE_TIME_PATTERN, Locale.getDefault());

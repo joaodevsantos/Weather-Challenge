@@ -1,40 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/city"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TITLE"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        style="@style/TextAppearance.MaterialComponents.Body2"/>
-
-    <TextView
-        android:id="@+id/datetime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="DATE TIME"
-        android:textColor="@color/black"
-        style="@style/TextAppearance.MaterialComponents.Body2"/>
-
-    <TextView
-        android:id="@+id/temperature"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TEMPERATURE"
-        android:textColor="@color/black"
-        style="@style/TextAppearance.MaterialComponents.Headline5"/>
+    <ImageView
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="380dp"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/weather_rain"
+        android:scaleType="centerCrop"/>
 
     <TextView
         android:id="@+id/description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="WEATHER DESCRIPTION"
-        android:textColor="@color/black"
-        style="@style/TextAppearance.MaterialComponents.Body2"/>
+        android:textColor="@color/white"
+        style="@style/TextAppearance.MaterialComponents.Body2"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"/>
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/temperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/description"
+        android:text="38ºC"
+        android:textColor="@color/white"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/temperature"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:id="@+id/temperatureMax"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="37ºC"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:layout_marginEnd="12dp"/>
+
+        <TextView
+            android:id="@+id/temperatureMin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12ºC"
+            android:textColor="@color/white"
+            android:textSize="14sp"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lisbon"
+        android:textColor="@color/white"
+        android:layout_above="@id/layout"
+        android:layout_marginBottom="60dp"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_centerHorizontal="true"/>
+
+    <RelativeLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@id/background"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="-50dp"
+        android:background="@drawable/background_round_corners_white">
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Additional Info"
+        android:textColor="@color/black"
+        android:layout_below="@id/background"
+        android:layout_marginTop="70dp"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_marginStart="12dp"/>
+
+</RelativeLayout>

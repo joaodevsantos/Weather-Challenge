@@ -1,8 +1,24 @@
 package com.example.weatherchallenge.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
-public class WeatherInfo {
+public class WeatherInfo implements Parcelable {
+
+    public static final Creator<WeatherInfo> CREATOR = new Creator<WeatherInfo>() {
+        @Override
+        public WeatherInfo createFromParcel(Parcel source) {
+            return new WeatherInfo(source);
+        }
+
+        @Override
+        public WeatherInfo[] newArray(int size) {
+            return new WeatherInfo[size];
+        }
+    };
+
     @SerializedName("temp")
     private float temperature;
     @SerializedName("feels_like")
@@ -82,5 +98,33 @@ public class WeatherInfo {
 
     public void setGround_level(int ground_level) {
         this.ground_level = ground_level;
+    }
+
+    private WeatherInfo(Parcel in){
+        this.temperature = in.readFloat();
+        this.temperature_feeling = in.readFloat();
+        this.temperature_minimum = in.readFloat();
+        this.temperature_maximum = in.readFloat();
+        this.pressure = in.readInt();
+        this.humidity = in.readInt();
+        this.sea_level = in.readInt();
+        this.ground_level = in.readInt();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeFloat(this.temperature);
+        dest.writeFloat(this.temperature_feeling);
+        dest.writeFloat(this.temperature_minimum);
+        dest.writeFloat(this.temperature_maximum);
+        dest.writeInt(this.pressure);
+        dest.writeInt(this.humidity);
+        dest.writeInt(this.sea_level);
+        dest.writeInt(this.ground_level);
     }
 }
