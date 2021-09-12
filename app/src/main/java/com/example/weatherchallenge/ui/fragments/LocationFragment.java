@@ -46,8 +46,25 @@ public class LocationFragment extends Fragment {
         binding.city.setText(cityWeather.getCity());
         binding.description.setText(cityWeather.getWeatherDescription().get(0).getDescription());
         binding.temperature.setText(String.format("%.1fºC", cityWeather.getWeather().getTemperature()));
-        binding.temperatureMax.setText(String.format("%.1fºC", cityWeather.getWeather().getTemperature_maximum()));
-        binding.temperatureMin.setText(String.format("%.1fºC", cityWeather.getWeather().getTemperature_minimum()));
+        binding.temperatureMax.setText(String.format("max. %.1fºC", cityWeather.getWeather().getTemperature_maximum()));
+        binding.temperatureMin.setText(String.format("min. %.1fºC", cityWeather.getWeather().getTemperature_minimum()));
+
+        binding.humidity.setText(String.format("%d", cityWeather.getWeather().getHumidity()));
+        binding.pressure.setText(String.format("%d hPa", cityWeather.getWeather().getPressure()));
+        binding.seaLevel.setText(String.format("%dm", cityWeather.getWeather().getSea_level()));
+        binding.groundLevel.setText(String.format("%dm", cityWeather.getWeather().getGround_level()));
+
+        SimpleDateFormat timeFormat = new SimpleDateFormat(Constants.TIME_PATTERN, Locale.getDefault());
+
+        // Get sunrise time
+        Date sunrise = new java.util.Date((cityWeather.getSun().getSunrise_timestamp() + cityWeather.getTimezone() - 3600) * 1000);
+        binding.sunrise.setText(timeFormat.format(sunrise));
+
+        // Get sunset time
+        Date sunset = new java.util.Date((cityWeather.getSun().getSunset_timestamp() + cityWeather.getTimezone() - 3600) * 1000);
+        binding.sunset.setText(timeFormat.format(sunset));
+
+        binding.wind.setText(String.format("%.2f", cityWeather.getWind().getSpeed()));
 
         // Sets the date time according to a specific pattern
         SimpleDateFormat dateFormat = new SimpleDateFormat(Constants.DATE_TIME_PATTERN, Locale.getDefault());

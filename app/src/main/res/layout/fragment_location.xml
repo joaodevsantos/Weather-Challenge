@@ -9,8 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="380dp"
         android:layout_alignParentTop="true"
-        android:src="@drawable/weather_rain"
-        android:scaleType="centerCrop"/>
+        android:scaleType="centerCrop"
+        android:src="@drawable/weather_rain" />
 
     <TextView
         android:id="@+id/description"
@@ -38,26 +38,26 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_below="@id/temperature"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:gravity="center">
 
         <TextView
             android:id="@+id/temperatureMax"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="37ºC"
+            android:text="max. 37ºC"
             android:textColor="@color/white"
-            android:textSize="18sp"
-            android:layout_marginEnd="12dp"/>
+            android:textSize="16sp"/>
 
         <TextView
             android:id="@+id/temperatureMin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="12ºC"
+            android:text="min. 12ºC"
             android:textColor="@color/white"
-            android:textSize="14sp"/>
+            android:textSize="16sp"/>
 
     </LinearLayout>
 
@@ -76,24 +76,279 @@
     <RelativeLayout
         android:id="@+id/layout"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_below="@id/background"
-        android:layout_marginHorizontal="30dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="-50dp"
-        android:background="@drawable/background_round_corners_white">
+        android:layout_below="@id/background"
+        android:layout_alignParentStart="true">
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:background="@drawable/background_round_corners_white"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Sunrise"
+                android:textColor="@color/dark_grey"
+                android:textSize="12sp" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginVertical="8dp"
+                android:layout_marginHorizontal="12dp"
+                android:scaleType="centerCrop"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_sun" />
+
+            <TextView
+                android:id="@+id/sunrise"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="14:30"
+                android:maxLines="1"
+                android:lines="1"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@drawable/background_round_corners_white"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Sunset"
+                android:textColor="@color/dark_grey"
+                android:textSize="12sp" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginVertical="8dp"
+                android:layout_marginHorizontal="12dp"
+                android:scaleType="centerCrop"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_moon" />
+
+            <TextView
+                android:id="@+id/sunset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="20:30"
+                android:maxLines="1"
+                android:lines="1"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/background_round_corners_white"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Wind"
+                android:textColor="@color/dark_grey"
+                android:textSize="12sp" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginVertical="8dp"
+                android:layout_marginHorizontal="12dp"
+                android:scaleType="centerCrop"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_wind" />
+
+            <TextView
+                android:id="@+id/wind"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginBottom="8dp"
+                android:maxLines="1"
+                android:lines="1"
+                android:text="30km/h"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+        </LinearLayout>
 
     </RelativeLayout>
 
     <TextView
+        android:id="@+id/additional"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Additional Info"
-        android:textColor="@color/black"
         android:layout_below="@id/background"
+        android:layout_marginStart="12dp"
         android:layout_marginTop="70dp"
-        android:textStyle="bold"
+        android:text="Additional Info"
+        android:textColor="@color/title"
         android:textSize="20sp"
-        android:layout_marginStart="12dp"/>
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/field_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/additional"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:maxLines="1"
+            android:lines="1"
+            android:text="Humidity"
+            android:textColor="@color/title"
+            android:textStyle="bold"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/humidity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="12dp"
+            android:maxLines="1"
+            android:lines="1"
+            android:text="30"
+            android:textColor="@color/title"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/field_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/field_1"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:maxLines="1"
+            android:lines="1"
+            android:text="Pressure"
+            android:textColor="@color/title"
+            android:textStyle="bold"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/pressure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="12dp"
+            android:maxLines="1"
+            android:lines="1"
+            android:text="30"
+            android:textColor="@color/title"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/field_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/field_2"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:maxLines="1"
+            android:lines="1"
+            android:text="Sea Level"
+            android:textColor="@color/title"
+            android:textStyle="bold"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/sea_level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="12dp"
+            android:maxLines="1"
+            android:lines="1"
+            android:text="30"
+            android:textColor="@color/title"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/field_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/field_3"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:maxLines="1"
+            android:lines="1"
+            android:text="Ground Level"
+            android:textColor="@color/title"
+            android:textStyle="bold"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/ground_level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="12dp"
+            android:maxLines="1"
+            android:lines="1"
+            android:text="30"
+            android:textColor="@color/title"
+            android:textSize="14sp" />
+
+    </LinearLayout>
 
 </RelativeLayout>
