@@ -1,9 +1,27 @@
 <resources>
-    <string name="app_name">MainActivity</string>
+    <string name="app_name">WeatherChallenge</string>
 
     <!-- Rationale to Location Permission -->
     <string name="rationale_location_title">Enable Location</string>
     <string name="rationale_location_message">In order for the app being able to show you the current weather at your location you need to enable the location services.</string>
     <string name="rationale_location_btn_ok">Location Settings</string>
     <string name="rationale_location_btn_cancel">Cancel</string>
+    
+    <!-- Fragment Location -->
+    <string name="sunrise">Sunrise</string>
+    <string name="sunset">Sunset</string>
+    <string name="wind">Wind</string>
+    <string name="humidity">Humidity</string>
+    <string name="pressure">Pressure</string>
+    <string name="sea_level">Sea Level (Pressure)</string>
+    <string name="ground_level">Ground Level (Pressure)</string>
+    
+    <!-- Units -->
+    <string name="unit_pressure">hPa</string>
+    <string name="temperature_metric">ºC</string>
+    <string name="temperature_kelvin">K</string>
+    <string name="temperature_fahrenheit">ºF</string>
+    <string name="speed_metric_meter">m/s</string>
+    <string name="speed_imperial_mile">m/h</string>
+    <string name="millimeter">mm</string>
 </resources>

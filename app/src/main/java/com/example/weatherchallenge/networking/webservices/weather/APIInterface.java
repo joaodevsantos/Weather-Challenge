@@ -13,11 +13,6 @@ public interface APIInterface {
                                                     @Query("units") String units);
 
     @GET("weather")
-    public Call<CityWeather> getCurrentWeatherBy(@Query("id") int cityId,
-                                                 @Query("appid") String APIkey,
-                                                 @Query("units") String units);
-
-    @GET("weather")
     public Call<CityWeather> getCurrentWeatherBy(@Query("lat") double latitude,
                                                    @Query("lon") double longitude,
                                                    @Query("appid") String APIkey,

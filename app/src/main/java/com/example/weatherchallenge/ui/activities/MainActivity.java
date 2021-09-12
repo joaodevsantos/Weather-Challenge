@@ -33,10 +33,10 @@ public class MainActivity extends AppCompatActivity {
 
     private final DialogInterface.OnClickListener onRationaleClick = (dialog, which) -> {
         // If the user wants to give the permission
-        if(which == DialogInterface.BUTTON_POSITIVE)
+        if (which == DialogInterface.BUTTON_POSITIVE)
             // Request the location permission
             requestLocationPermissionLauncher.launch(Manifest.permission.ACCESS_COARSE_LOCATION);
-        else if(which == DialogInterface.BUTTON_NEGATIVE)
+        else if (which == DialogInterface.BUTTON_NEGATIVE)
             // Move to the locations fragment without location permission
             Functions.changeFragment(MainActivity.this,
                     R.id.activity_main_frame,
@@ -49,11 +49,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Check if the location permission is granted or denied
-        if(ContextCompat.checkSelfPermission(MainActivity.this,
-                                                Manifest.permission.ACCESS_COARSE_LOCATION)
+        if (ContextCompat.checkSelfPermission(MainActivity.this,
+                Manifest.permission.ACCESS_COARSE_LOCATION)
                 == PackageManager.PERMISSION_DENIED)
             // Check if it is needed to present a permission rationale
-            if(shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_COARSE_LOCATION))
+            if (shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_COARSE_LOCATION))
                 // Show the rational as an UI educational
                 new AlertDialog.Builder(MainActivity.this)
                         .setTitle(getString(R.string.rationale_location_title))
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                     getLocationsFragmentWithCities());
     }
 
-    private LocationsFragment getLocationsFragmentWithCities(){
+    private LocationsFragment getLocationsFragmentWithCities() {
         Bundle bundle = new Bundle();
         bundle.putStringArrayList("citiesList", new ArrayList<>(Arrays.asList("Lisbon,pt", "Madrid,es", "Paris,fr", "Berlin,de",
                 "Copenhagen,dk", "Roma,it", "London,uk", "Dublin,ie", "Prague,cz", "Vienna,at")));

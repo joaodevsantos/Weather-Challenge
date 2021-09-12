@@ -69,7 +69,7 @@ public class LocationsAdapter extends RecyclerView.Adapter<LocationsAdapter.View
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        private ItemCityWeatherBinding itemBinding;
+        private final ItemCityWeatherBinding itemBinding;
 
         public ViewHolder(@NonNull ItemCityWeatherBinding itemBinding) {
             super(itemBinding.getRoot());

@@ -94,7 +94,7 @@
                 android:layout_gravity="center"
                 android:layout_marginHorizontal="8dp"
                 android:layout_marginTop="8dp"
-                android:text="Sunrise"
+                android:text="@string/sunrise"
                 android:textColor="@color/dark_grey"
                 android:textSize="12sp" />
 
@@ -135,7 +135,7 @@
                 android:layout_gravity="center"
                 android:layout_marginHorizontal="8dp"
                 android:layout_marginTop="8dp"
-                android:text="Sunset"
+                android:text="@string/sunset"
                 android:textColor="@color/dark_grey"
                 android:textSize="12sp" />
 
@@ -177,7 +177,7 @@
                 android:layout_gravity="center"
                 android:layout_marginHorizontal="8dp"
                 android:layout_marginTop="8dp"
-                android:text="Wind"
+                android:text="@string/wind"
                 android:textColor="@color/dark_grey"
                 android:textSize="12sp" />
 
@@ -233,7 +233,7 @@
             android:layout_gravity="center"
             android:maxLines="1"
             android:lines="1"
-            android:text="Humidity"
+            android:text="@string/humidity"
             android:textColor="@color/title"
             android:textStyle="bold"
             android:textSize="14sp" />
@@ -246,7 +246,6 @@
             android:layout_marginStart="12dp"
             android:maxLines="1"
             android:lines="1"
-            android:text="30"
             android:textColor="@color/title"
             android:textSize="14sp" />
 
@@ -266,7 +265,7 @@
             android:layout_gravity="center"
             android:maxLines="1"
             android:lines="1"
-            android:text="Pressure"
+            android:text="@string/pressure"
             android:textColor="@color/title"
             android:textStyle="bold"
             android:textSize="14sp" />
@@ -279,7 +278,6 @@
             android:layout_marginStart="12dp"
             android:maxLines="1"
             android:lines="1"
-            android:text="30"
             android:textColor="@color/title"
             android:textSize="14sp" />
 
@@ -299,7 +297,7 @@
             android:layout_gravity="center"
             android:maxLines="1"
             android:lines="1"
-            android:text="Sea Level"
+            android:text="@string/sea_level"
             android:textColor="@color/title"
             android:textStyle="bold"
             android:textSize="14sp" />
@@ -312,7 +310,6 @@
             android:layout_marginStart="12dp"
             android:maxLines="1"
             android:lines="1"
-            android:text="30"
             android:textColor="@color/title"
             android:textSize="14sp" />
 
@@ -332,7 +329,7 @@
             android:layout_gravity="center"
             android:maxLines="1"
             android:lines="1"
-            android:text="Ground Level"
+            android:text="@string/ground_level"
             android:textColor="@color/title"
             android:textStyle="bold"
             android:textSize="14sp" />
@@ -345,7 +342,6 @@
             android:layout_marginStart="12dp"
             android:maxLines="1"
             android:lines="1"
-            android:text="30"
             android:textColor="@color/title"
             android:textSize="14sp" />
 
