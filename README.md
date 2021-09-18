@@ -46,6 +46,8 @@ In order to run the application you need to:
 * The images could be improved if I get them in Vector.
 * I want the title to move when the recycler view is scrolled.
 * I want to save the preferred units in Shared Preferences and include a button to the user change his preference.
+* Improve the layout and the code to adapt to screen rotations.
+* Check Internet status on HTTP requests.
 
 ## Author
 
